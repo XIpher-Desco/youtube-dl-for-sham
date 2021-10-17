@@ -7,3 +7,7 @@
 デフォルト設定では、このディレクトリに ./youtube/channel/title.mp4 で保存される.  
 保存先を変更するには、 yt-dlp_conf.yaml の path を変更する
 
+## 実行
+```
+python3 ./main.py
+```
