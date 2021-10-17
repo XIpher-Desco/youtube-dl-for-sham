@@ -1,6 +1,12 @@
 # 何ができるか
 チャンネルの動画を一括して保存する
 
+# インストール手順
+requirements.txt に記載されているパッケージをインストールします。
+```
+pip3 install -r requirements.txt
+```
+
 # 使い方
 `yt-dlp_conf.yaml` と `channels.yaml` を sample から作る
 

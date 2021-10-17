@@ -1,0 +1,5 @@
+mutagen
+pycryptodomex
+websockets
+yt-dlp
+pyyaml
