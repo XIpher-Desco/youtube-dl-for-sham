@@ -1,0 +1,13 @@
+-f: &format 'bestvideo[vcodec*=av01]+bestaudio[acodec*=opus]/bestvideo[vcodec*=vp9]+bestaudio[acodec*=opus]/bestvideo+bestaudio'
+format: *format
+
+--output: &outtmpl '%(channel)s\%(title)s.%(ext)s'
+outtmpl: *outtmpl
+
+# --paths: &paths 'Y:/git/youtube-dl-for-sham/youtube'
+--paths: &paths 
+  home: '.\youtube'
+paths: *paths
+
+--download-archive: &download-archive '.\downloaded.list'
+download_archive: *download-archive
