@@ -4,7 +4,6 @@ format: *format
 --output: &outtmpl '%(channel)s\%(title)s.%(ext)s'
 outtmpl: *outtmpl
 
-# --paths: &paths 'Y:/git/youtube-dl-for-sham/youtube'
 --paths: &paths 
   home: '.\youtube'
 paths: *paths
