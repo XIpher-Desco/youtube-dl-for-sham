@@ -8,12 +8,17 @@ import os
 import yaml
 
 CONFIG_PATH = os.path.dirname(__file__)+"/yt-dlp_conf.yaml"
-with open(CONFIG_PATH) as f:
+with open(CONFIG_PATH,encoding="utf-8") as f:
     CONFIG_DICT = yaml.safe_load(f)
 
 CHANNEL_PATH = os.path.dirname(__file__)+"/channels.yaml"
-with open(CHANNEL_PATH) as f:
+with open(CHANNEL_PATH,encoding="utf-8") as f:
     CHANNEL_DICT = yaml.safe_load(f)
+
+
+if "match_filter" in CONFIG_DICT:
+    match_filter_text = CONFIG_DICT["match_filter"]
+    CONFIG_DICT["match_filter"] =  yt_dlp.utils.match_filter_func(match_filter_text)
 
 ydl_opts = CONFIG_DICT
 with yt_dlp.YoutubeDL(ydl_opts) as ydl:

@@ -1,12 +1,42 @@
--f: &format 'bestvideo[vcodec*=av01]+bestaudio[acodec*=opus]/bestvideo[vcodec*=vp9]+bestaudio[acodec*=opus]/bestvideo+bestaudio'
+# 取得フォーマット指定
+-f: &format 'bestvideo[ext*=mp4]+bestaudio/bestvideo+bestaudio'
 format: *format
 
---output: &outtmpl '%(channel)s\%(title)s.%(ext)s'
+# 出力ファイル形式・ファイル名
+# /チャンネル名/YYYYMMDD_タイトル.mp4
+--output: &outtmpl '%(channel)s/%(upload_date)s_%(title)s.%(ext)s'
 outtmpl: *outtmpl
 
---paths: &paths 
-  home: '.\youtube'
+# 出力先指定
+--paths: &paths
+  home: '/youtube/'
 paths: *paths
 
---download-archive: &download-archive '.\downloaded.list'
+# サムネイル画像を取得
+#--write-thumbnail:
+#writesubtitles: true
+#write_all_thumbnails: true
+
+# コメント取得
+getcomments: true
+
+# サブタイトル取得
+writesubtitles: true
+#allsubtitles: true
+
+# インターバル指定(秒)
+sleep_interval: 5
+
+# リトライ回数
+extractor_retries: 3
+
+# ストリームはスキップする
+match_filter: !is_live
+
+# ダウンロード済判定
+--download-archive: &download-archive './downloaded.list'
 download_archive: *download-archive
+
+# ファイルマージ
+--merge_output_format: &merge-output-format 'mp4'
+merge_output_format: *merge-output-format
