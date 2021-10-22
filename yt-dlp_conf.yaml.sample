@@ -31,7 +31,10 @@ sleep_interval: 5
 extractor_retries: 3
 
 # ストリームはスキップする
-match_filter: !is_live
+match_filter: '!is_live'
+
+# フォーマットエラーを無視する
+ignore_no_formats_error: true
 
 # ダウンロード済判定
 --download-archive: &download-archive './downloaded.list'
