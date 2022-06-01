@@ -19,17 +19,17 @@ args = parser.parse_args()
 
 if args.CONFIG_PATH is None:
     CONFIG_PATH = os.path.dirname(__file__)+"/yt-dlp_conf.yaml"
-    with open(CONFIG_PATH,encoding="utf-8") as f:
-        CONFIG_DICT = yaml.safe_load(f)
 else:
     CONFIG_PATH = args.CONFIG_PATH
+with open(CONFIG_PATH,encoding="utf-8") as f:
+        CONFIG_DICT = yaml.safe_load(f)
 
 if args.CHANNEL_PATH is None:
     CHANNEL_PATH = os.path.dirname(__file__)+"/channels.yaml"
-    with open(CHANNEL_PATH,encoding="utf-8") as f:
-        CHANNEL_DICT = yaml.safe_load(f)
 else:
     CHANNEL_PATH = args.CHANNEL_PATH
+with open(CHANNEL_PATH,encoding="utf-8") as f:
+    CHANNEL_DICT = yaml.safe_load(f)
 
 if "match_filter" in CONFIG_DICT:
     match_filter_text = CONFIG_DICT["match_filter"]
