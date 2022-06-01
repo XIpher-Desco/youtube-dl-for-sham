@@ -8,26 +8,22 @@ import os
 import yaml
 import argparse
 
+DEFAULT_CONFIG_PATH = os.path.dirname(__file__)+"/yt-dlp_conf.yaml"
+DEFAULT_CHANNEL_PATH = os.path.dirname(__file__)+"/channels.yaml"
+
 # コマンドライン引数解析
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--CONFIG_PATH")
-parser.add_argument("--CHANNEL_PATH")
+# 引数設定 CONFIG, CHANNEL PATH は指定があればそれを、無ければデフォルトを使う
+parser.add_argument("--CONFIG_PATH", help="チャンネル一覧ファイルのフルパス,指定無ければ main.py と同じ階層の yt-dlp_conf.yaml を使用する" , nargs='?', const=DEFAULT_CONFIG_PATH, type=str, default=DEFAULT_CONFIG_PATH)
+parser.add_argument("--CHANNEL_PATH", help="チャンネル一覧ファイルのフルパス,指定無ければ main.py と同じ階層の channels.yaml を使用する" , nargs='?', const=DEFAULT_CHANNEL_PATH, type=str, default=DEFAULT_CHANNEL_PATH)
 args = parser.parse_args()
 
-# 引数にファイルのPATH指定があればそれを使う、なければ実行ファイルと同じ階層に物を使う
-
-if args.CONFIG_PATH is None:
-    CONFIG_PATH = os.path.dirname(__file__)+"/yt-dlp_conf.yaml"
-else:
-    CONFIG_PATH = args.CONFIG_PATH
+CONFIG_PATH = args.CONFIG_PATH
 with open(CONFIG_PATH,encoding="utf-8") as f:
-        CONFIG_DICT = yaml.safe_load(f)
+    CONFIG_DICT = yaml.safe_load(f)
 
-if args.CHANNEL_PATH is None:
-    CHANNEL_PATH = os.path.dirname(__file__)+"/channels.yaml"
-else:
-    CHANNEL_PATH = args.CHANNEL_PATH
+CHANNEL_PATH = args.CHANNEL_PATH
 with open(CHANNEL_PATH,encoding="utf-8") as f:
     CHANNEL_DICT = yaml.safe_load(f)
 
